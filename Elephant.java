@@ -42,7 +42,6 @@ public class Elephant extends Actor
         
         animationTimer.mark();
         
-        setImage(idleLeft[0]); 
         
         
     }
