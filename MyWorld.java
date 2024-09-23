@@ -30,11 +30,25 @@ public class MyWorld extends World
         addObject(scoreLabel, 50, 50); 
         
         
-        createApple(); 
+        spawnFood();
         
     }
     
-    public void increaseScore()
+    
+    public void spawnFood() {
+        int rand = Greenfoot.getRandomNumber(2);
+        Food food;
+        if(rand == 0) {
+            food = new Apple();
+        } else {
+            food = new Cherry();
+        }
+        int x = Greenfoot.getRandomNumber(600);
+        addObject(food, x, 0);
+    }
+    
+    
+    public void increaseScore(int value)
     {
         score++;
         scoreLabel.setValue(score); 

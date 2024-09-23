@@ -85,22 +85,23 @@ public class Elephant extends Actor
             facing = "right";
         }
         
-        eat(); 
+        
         animateElephant();
+        
+        checkFoodCollision();
         
     }
     
-    public void eat()
-    {
-        if(isTouching(Apple.class))
-        {
-            removeTouching(Apple.class); 
-            MyWorld world = (MyWorld) getWorld(); 
-            world.createApple();
-            world.increaseScore();
+    public void checkFoodCollision() {
+        Actor actor = getOneIntersectingObject(Food.class); // Might be null
+        if(actor != null) {
+            elephantSound.play();
+            Food food = (Food) actor;
+            MyWorld world = (MyWorld) getWorld();
             
-            elephantSound.play(); 
-            
+            world.increaseScore(food.value);
+            getWorld().removeObject(food);
+            world.spawnFood();
         }
         
     }
